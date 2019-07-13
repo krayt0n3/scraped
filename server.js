@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 var db = require("./models");
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://mongoHeadlines:marios92@ds351107.mlab.com:51107/heroku_8rk9mlb0";
 
 mongoose.connect(MONGODB_URI);
 
