@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 var db = require("./models");
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://mongoHeadlines:marios92@ds351107.mlab.com:51107/heroku_8rk9mlb0";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 mongoose.connect(MONGODB_URI);
 
@@ -36,12 +36,12 @@ mongoose.connect(MONGODB_URI);
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with axios
-  axios.get("https://www.c-span.org/").then(function(response) {
+  axios.get("http://www.echojs.com/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("text h3").each(function(i, element) {
+    $("article h2").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
